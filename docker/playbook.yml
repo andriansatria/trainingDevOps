@@ -1,6 +1,6 @@
 - hosts: server
   vars:
-  - image: ajizkai/http-custom:icon
+  - image: asmarty/http-custom:icon
   tasks:
    - name: install python docker for ubuntu 
      apt:
