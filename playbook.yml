@@ -5,14 +5,14 @@
    - name: install python docker for ubuntu 
      apt:
       name:
-       - phyton3
-       - phyton-docker
+       - python3
+       - python-docker
       state: present
      when:
       - ansible_distribution == "Ubuntu"
    - name: Install python docker for centos
      yum:
-      name: phyton-docker
+      name: python-docker
       state: present
      when:
       - ansible_distribution == "CentOS"
