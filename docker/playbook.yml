@@ -1,0 +1,30 @@
+- hosts: server
+  vars:
+  - image: ajizkai/http-custom:icon
+  tasks:
+   - name: install python docker for ubuntu 
+     apt:
+      name:
+       - phyton3
+       - phyton-docker
+      state: present
+     when:
+     - ansible_distribution == "Ubuntu"
+    - name: Install python docker for centos
+      yum:
+       name: phyton-docker
+       state: present
+      when:
+      - ansible_distribution == "CentOS"
+     - name: pull image
+       docker_images:
+         name: "{{ image }}"
+         state: present
+     - name: create container
+       docker_containers:
+         name: docker-ansible
+         state: started
+         published_ports:
+          - 8090:80
+         image: "{{ image }}"
+         recreate: yes
